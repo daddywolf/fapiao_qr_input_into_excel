@@ -43,10 +43,7 @@ if __name__ == "__main__":
         bar = 'FC60F6627B374FA9A1C8'
         qr = input("请扫描发票二维码...\n")
         fapiao = Fapiao()
-        # fapiao.reconize_fapiao_information(qr)
-        # dic = fapiao.reconize_fapiao_information("01,10,037002000311,43951776,121.58,20210327,63863934212965558966,F179,")
-        dic = fapiao.reconize_fapiao_information(
-            "01,04,037002000104,30814076,294.34,20210318,11910009001762141289,22C4,")
+        dic = fapiao.reconize_fapiao_information(qr)
         print(dic)
         # 自动化Excel
         k.press_keys(['command', 'tab'])
