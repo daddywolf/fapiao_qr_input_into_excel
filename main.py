@@ -1,10 +1,9 @@
-# 01,04,037002000104,30814076,294.34,20210318,11910009001762141289,22C4,
 import time
 
-# 运行前先执行pip3 install pykeyboard
+# 运行前先执行：pip3 install pykeyboard
 from pykeyboard import *
 
-# 把需要输出的内容谢在这里
+# 把需要输出的内容写在这里
 excel_info = ['fpdm', 'fphm', 'bhsje', 'kprq', 'jym']
 
 
@@ -40,7 +39,7 @@ if __name__ == "__main__":
     k = PyKeyboard()
     while 1:
         bar = input("请扫描Concur条码...\n")
-        bar = 'FC60F6627B374FA9A1C8'
+        bar = 'FC60F6627B374FA9A1C8' # 临时使用
         qr = input("请扫描发票二维码...\n")
         fapiao = Fapiao()
         dic = fapiao.reconize_fapiao_information(qr)
