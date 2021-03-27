@@ -9,7 +9,7 @@ excel_info = ['fpdm', 'fphm', 'bhsje', 'kprq', 'jym']
 
 class Fapiao(object):
 
-    def reconize_fapiao_information(self, info):
+    def analyze_fapiao_information(self, info):
         list = info.split(",")
         if len(list) == 9:
             print("识别成功", end=":")
@@ -34,25 +34,32 @@ class Fapiao(object):
             'other2': list[8],
         }
 
+    def keyboard_operation(self, bar, dict=None):
+        if dict is None or bar is None:
+            return
+        else:
+            k = PyKeyboard()
+            print(dict)
+            # 切换到Excel
+            k.press_keys(['command', 'tab'])
+            time.sleep(1)
+            for i in bar:
+                k.tap_key(i)
+            k.tap_key('tab')
+            for i in excel_info:
+                for j in dict[i]:
+                    k.tap_key(j)
+                k.tap_key('tab')
+            k.tap_key('return')
+            # 切换到Python窗口
+            k.press_keys(['command', 'tab'])
+
 
 if __name__ == "__main__":
-    k = PyKeyboard()
     while 1:
         bar = input("请扫描Concur条码...\n")
-        bar = 'FC60F6627B374FA9A1C8' # 临时使用
+        bar = 'FC60F6627B374FA9A1C8'  # 临时使用
         qr = input("请扫描发票二维码...\n")
         fapiao = Fapiao()
-        dic = fapiao.reconize_fapiao_information(qr)
-        print(dic)
-        # 自动化Excel
-        k.press_keys(['command', 'tab'])
-        time.sleep(1)
-        for i in bar:
-            k.tap_key(i)
-        k.tap_key('tab')
-        for i in excel_info:
-            for j in dic[i]:
-                k.tap_key(j)
-            k.tap_key('tab')
-        k.tap_key('return')
-        k.press_keys(['command', 'tab'])
+        dict = fapiao.analyze_fapiao_information(qr)
+        fapiao.keyboard_operation(bar, dict)
