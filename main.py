@@ -11,17 +11,15 @@ class Fapiao(object):
 
     def analyze_fapiao_information(self, info):
         list = info.split(",")
-        if len(list) == 9:
-            print("识别成功", end=":")
-        else:
+        if len(list) != 9:
             print("识别失败，请重新扫描")
             return
-        if list[0] == "01" and list[1] == "04":
-            print("普通发票")
+        elif list[0] == "01" and list[1] == "04":
+            print("识别成功，普通发票")
         elif list[0] == "01" and list[1] == "01":
-            print("专用发票")
+            print("识别成功，专用发票")
         elif list[0] == "01" and list[1] == "10":
-            print("电子发票")
+            print("识别成功，电子发票")
         return {
             'first': list[0],
             'second': list[1],
