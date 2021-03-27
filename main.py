@@ -35,7 +35,7 @@ class Fapiao(object):
         }
 
     def keyboard_operation(self, bar, dict=None):
-        if dict is None or bar is None:
+        if dict is None:  # bar可以不传，但是qr产生的dict不能不传
             return
         else:
             k = PyKeyboard()
