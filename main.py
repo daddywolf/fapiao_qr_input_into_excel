@@ -1,9 +1,10 @@
 import time
 
 # 运行前先执行：pip3 install pykeyboard
-from pykeyboard import *
+from pykeyboard.windows import PyKeyboard
 
 # 把需要输出的内容写在这里
+
 excel_info = ['fpdm', 'fphm', 'bhsje', 'kprq', 'jym']
 
 
@@ -39,18 +40,18 @@ class Fapiao(object):
             k = PyKeyboard()
             print(dict)
             # 切换到Excel
-            k.press_keys(['command', 'tab'])
+            k.press_keys([k.alt_key, k.tab_key])
             time.sleep(1)
             for i in bar:
                 k.tap_key(i)
-            k.tap_key('tab')
+            k.tap_key(k.tab_key)
             for i in excel_info:
                 for j in dict[i]:
                     k.tap_key(j)
-                k.tap_key('tab')
-            k.tap_key('return')
+                k.tap_key(k.tab_key)
+            k.tap_key(k.return_key)
             # 切换到Python窗口
-            k.press_keys(['command', 'tab'])
+            k.press_keys([k.alt_key, k.tab_key])
 
 
 if __name__ == "__main__":
